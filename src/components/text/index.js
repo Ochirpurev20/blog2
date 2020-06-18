@@ -1,4 +1,5 @@
 import React from "react";
-import style from "./style.module.css";
 
-export const Text = (props) => {};
+export const Text = (props) => {
+  return <div> {props.value}</div>;
+};

@@ -1,8 +1,8 @@
 .loginhome {
   background-color: #234d20;
-  min-width: 600px;
-  max-width: 60%;
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 8px;
 }

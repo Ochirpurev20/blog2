@@ -10,12 +10,12 @@ function App() {
 
   return (
     <div className="App">
-      {/* <button onClick={() => setlogin(false)}>
+      <button onClick={() => setlogin(false)}>
         in app change login to false
       </button>
       <button onClick={() => setlogin(true)}>
         in app change login to true
-      </button> */}
+      </button>
       <Loginhome login={login} setlogin={setlogin} />
     </div>
   );
