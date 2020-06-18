@@ -4,16 +4,19 @@ import { Loginhome } from "../src/pages/loginhome";
 
 function App() {
   const [login, setlogin] = useState(true);
-  useEffect(() => {
-    console.log("app s login efect =" + login);
-  }, [login]);
+  // useEffect(() => {
+  //   console.log("app s login efect =" + login);
+  // }, [login]);
 
   return (
     <div className="App">
-      <button onClick={() => setlogin(false)}>
+      {/* <button onClick={() => setlogin(false)}>
         in app change login to false
       </button>
-      <Loginhome login={login} />
+      <button onClick={() => setlogin(true)}>
+        in app change login to true
+      </button> */}
+      <Loginhome login={login} setlogin={setlogin} />
     </div>
   );
 }

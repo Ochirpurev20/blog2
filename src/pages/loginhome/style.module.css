@@ -1,0 +1,8 @@
+.loginhome {
+  background-color: #234d20;
+  min-width: 600px;
+  max-width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
