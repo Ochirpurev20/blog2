@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import style from "./style.module.css";
 
+//text oruulah ba props oor orj irsen state functiond text iin utgiig shuud holboj ugnu
 export const Textinput = (props) => {
   return (
     <input
-      type="text"
+      type={props.type}
       id={props.id}
       name="title"
       onChange={(ev) => {

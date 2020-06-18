@@ -10,7 +10,7 @@ export const Create = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
-  const [user, setUser] = useState(["", "ochir", "badral", "chuk"]);
+  const [user, setUser] = useState(["СОНГООРОЙ", "ochir", "badral", "chuk"]);
   function clickfunc() {
     alert(
       "title===" +

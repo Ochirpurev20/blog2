@@ -10,10 +10,10 @@ export const Loginhome = (props) => {
   return (
     <div className={style.loginhome}>
       <Navbar login={props.login} />
-      <Route path="/list">
+      <Route path="/login/list">
         <List />
       </Route>
-      <Route path="/create">
+      <Route path="/login/create">
         <Create />
       </Route>
     </div>
