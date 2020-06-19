@@ -13,7 +13,14 @@ export const Navbar = (props) => {
           <Navlink link="/login/list" text="Жагсаалт" />
         </span>
         <span>
-          <Text value="Ochir" />
+          <Navlink link="/" text={props.globalUser} />
+          <button
+            onClick={() => {
+              props.setcookie(false);
+            }}
+          >
+            гарах
+          </button>
         </span>
       </div>
     );

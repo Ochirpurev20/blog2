@@ -4,34 +4,35 @@ import { Loginhome } from "../src/pages/loginhome";
 import { Mainhome } from "../src/pages/mainhome";
 
 function App() {
+  const [cookie, setcookie] = useState(true);
   const [login, setlogin] = useState(false);
+  const [globalUser, setGlobalUser] = useState("");
   const [appclass, setappclass] = useState("");
   useEffect(() => {
+    cookie ? setlogin(true) : setlogin(false);
     !login ? setappclass("main") : setappclass("App");
     console.log("app s login efect =" + login);
-  }, [login]);
+    console.log("app s efect cookie =" + cookie);
+    console.log("app s efect globalUser =" + globalUser);
+  }, [cookie, login]);
   if (login) {
     return (
       <div className={appclass}>
-        <button onClick={() => setlogin(false)}>
-          in app change login to false
-        </button>
-        <button onClick={() => setlogin(true)}>
-          in app change login to true
-        </button>
-        <Loginhome login={login} setlogin={setlogin} />
+        <Loginhome
+          login={login}
+          setcookie={setcookie}
+          globalUser={globalUser}
+        />
       </div>
     );
   } else {
     return (
       <div className={appclass}>
-        <button onClick={() => setlogin(false)}>
-          in app change login to false
-        </button>
-        <button onClick={() => setlogin(true)}>
-          in app change login to true
-        </button>
-        <Mainhome login={login} />
+        <Mainhome
+          login={login}
+          setcookie={setcookie}
+          setGlobalUser={setGlobalUser}
+        />
       </div>
     );
   }

@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./style.module.css";
 import { Text } from "../../components/text";
 import { Textinput } from "../../components/textinput";
 
 //login hiih form butsaah
 export const Login = (props) => {
+  const [tempuser, settempuser] = useState("");
+  const [temppass, settemppass] = useState("");
+
   function clickfunc() {
-    alert("user==" + props.user + " pass==" + props.password);
+    props.ststateuser(tempuser);
+    props.ststatepass(temppass);
   }
 
   return (
     <div className={style.login}>
       <form>
         <Text value="Хэрэглэгчийн нэр" />
-        <Textinput id="user" setstate={props.setstate1} />
+        <Textinput id="user" setstate={settempuser} />
         <Text value="Нууц үг" />
-        <Textinput id="password" type="password" setstate={props.setstate2} />
+        <Textinput id="password" type="password" setstate={settemppass} />
         <br />
         <button type="button" onClick={clickfunc}>
           Логин
