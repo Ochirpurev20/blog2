@@ -4,9 +4,11 @@ import { Loginhome } from "../src/pages/loginhome";
 import { Mainhome } from "../src/pages/mainhome";
 
 function App() {
-  const [cookie, setcookie] = useState(true);
+  const [cookie, setcookie] = useState(false);
   const [login, setlogin] = useState(false);
   const [globalUser, setGlobalUser] = useState("");
+  const [userID, setUserID] = useState("");
+  const [userDate, setUserDate] = useState("");
   const [appclass, setappclass] = useState("");
   useEffect(() => {
     cookie ? setlogin(true) : setlogin(false);
@@ -22,6 +24,8 @@ function App() {
           login={login}
           setcookie={setcookie}
           globalUser={globalUser}
+          userID={userID}
+          userDate={userDate}
         />
       </div>
     );
@@ -32,6 +36,8 @@ function App() {
           login={login}
           setcookie={setcookie}
           setGlobalUser={setGlobalUser}
+          setUserID={setUserID}
+          setUserDate={setUserDate}
         />
       </div>
     );

@@ -1,11 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
 export const Mydate = (props) => {
-  const [mydate, setmydate] = useState("");
-  setInterval(() => {
-    setmydate(gettime());
-    props.setstate(mydate);
-  }, 1000);
   function gettime() {
     var currentdate = new Date();
     var datetime =
@@ -22,9 +17,11 @@ export const Mydate = (props) => {
       currentdate.getSeconds();
     return datetime;
   }
-  return (
-    <div>
-      <p>Үүссэн хугацаа: {mydate}</p>
-    </div>
-  );
+  useEffect(() => {
+    props.setstate(gettime());
+    return function cleanup() {
+      clearInterval();
+    };
+  }, []);
+  return <div></div>;
 };

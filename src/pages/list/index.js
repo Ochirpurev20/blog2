@@ -1,144 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./style.module.css";
 import { Link } from "react-router-dom";
 import { Text } from "../../components/text";
 import { Paging } from "../../components/paging";
 
 export const List = (props) => {
-  const [list, setlist] = useState([]);
-  const [listUrt, setListUrt] = useState(0);
-  let tarr = [
-    {
-      id: 1,
-      title: "1",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 2,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 3,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 4,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 5,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 6,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 7,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 8,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 9,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 10,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 11,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 12,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 13,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-    {
-      id: 14,
-      title: "2",
-      content: "www",
-      created_dt: "2020-06-16T07:32:35.000Z",
-      updated_dt: null,
-      create_user_id: 2,
-      update_user_id: null,
-    },
-  ];
+  const [tarrList, settarrlist] = useState([]);
   useEffect(() => {
-    setlist(tarr);
-    setListUrt(tarr.length);
+    fetch("/api/read/", {
+      headers: { "content-type": "application/json" },
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("res data: " + JSON.stringify(data.results));
+        settarrlist(Object.entries(data.results));
+      });
   }, []);
+
   return (
     <div className={style.list}>
       <table id="mainTable">
@@ -153,30 +32,30 @@ export const List = (props) => {
           </tr>
         </thead>
         <tbody id="listTable">
-          {list.map((item) => {
+          {tarrList.map((item) => {
             let userNer;
-            if (item.create_user_id === 1) userNer = "ochir";
-            else if (item.create_user_id === 2) userNer = "chuka";
-            else if (item.create_user_id === 3) userNer = "badral";
+            if (item[1].create_user_id === 1) userNer = "ochir";
+            else if (item[1].create_user_id === 2) userNer = "chuka";
+            else if (item[1].create_user_id === 3) userNer = "badral";
             return (
-              <tr key={item.id}>
+              <tr key={item[1].id}>
                 <td>
-                  <Text value={item.title.substring(0, 8)} />
+                  <Text value={item[1].title.substring(0, 8)} />
                 </td>
                 <td>
                   {" "}
-                  <Text value={item.content.substring(0, 15)} />
+                  <Text value={item[1].content.substring(0, 15)} />
                 </td>
-                <td>{item.created_dt.substring(0, 10)}</td>
+                <td>{item[1].created_dt.substring(0, 10)}</td>
                 <td>{userNer}</td>
                 <td>
-                  <Link to={`/detail/${item.id}`}>Дэлгэрэнгүй</Link>
+                  <Link to={`/detail/${item[1].id}`}>Дэлгэрэнгүй</Link>
                 </td>
                 <td>
                   {" "}
                   <button
                   // onClick={() => {
-                  //   deleteFunc(item.id);
+                  //   deleteFunc(item[1].id);
                   // }}
                   >
                     Устгах
@@ -187,7 +66,7 @@ export const List = (props) => {
           })}
         </tbody>
       </table>
-      <Paging z={listUrt} />
+      <Paging z={tarrList.length} />
     </div>
   );
 };

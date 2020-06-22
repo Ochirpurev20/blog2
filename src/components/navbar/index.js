@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Navlink } from "../navlink";
 import style from "./style.module.css";
-import { Text } from "../../components/text";
 
 //navbar, herev login hiisen bol |uusgeh| jagsaalt buhii navbar butsaana. !login bol |register n holboos gargana
 export const Navbar = (props) => {
-  if (props.login == true) {
+  if (props.login === true) {
     return (
       <div className={style.navbar}>
         <span>

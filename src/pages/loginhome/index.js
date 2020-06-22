@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route } from "react-router-dom";
 
 import { Navbar } from "../../components/navbar";
@@ -6,6 +6,7 @@ import { List } from "../../pages/list";
 import style from "./style.module.css";
 import { Create } from "../create";
 import { UserInfo } from "../../components/userinfo";
+import { Detail } from "../detail";
 
 export const Loginhome = (props) => {
   return (
@@ -16,14 +17,24 @@ export const Loginhome = (props) => {
         setcookie={props.setcookie}
       />
       <Route path="/" exact>
-        <UserInfo globalUser={props.globalUser} />
+        <UserInfo
+          globalUser={props.globalUser}
+          userID={props.userID}
+          userDate={props.userDate}
+        />
       </Route>
       <Route path="/login/list">
         <List />
       </Route>
       <Route path="/login/create">
-        <Create />
+        <Create user={props.globalUser} userID={props.userID} />
       </Route>
+      <Route
+        path="/detail/:id"
+        render={(id) => {
+          return <Detail id={id} />;
+        }}
+      />
     </div>
   );
 };

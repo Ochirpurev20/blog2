@@ -5,9 +5,9 @@ export const UserInfo = (props) => {
   return (
     <div className={style.userinfo}>
       {" "}
-      <p>Нэвтэрсэн хэрэглэгч: {props.globalUser}</p>
-      <p>Оруулсан бичлэгүүд ..........</p>
-      <p>Бүртгүүлсэн огноо ..........</p>
+      <p>Нэвтэрсэн хэрэглэгчийн нэр: {props.globalUser}</p>
+      <p>Нэвтэрсэн хэрэглэгчийн ID: {props.userID}</p>
+      <p>Бүртгүүлсэн огноо: {props.userDate}</p>
     </div>
   );
 };

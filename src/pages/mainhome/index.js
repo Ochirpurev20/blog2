@@ -9,12 +9,24 @@ export const Mainhome = (props) => {
   const [user, setuser] = useState("");
   const [password, setpassword] = useState("");
   useEffect(() => {
-    if (user == "ochir" && password == 1) {
-      props.setcookie(true);
-      props.setGlobalUser("ochir");
-    } else if (user == "badral" && password == 1) {
-      props.setcookie(true);
-      props.setGlobalUser("badral");
+    if (user && password) {
+      // console.log(user + "and" + password);
+      fetch("api/user/login", {
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+        body: JSON.stringify({ user, password }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert(data.status);
+          if ((data.cookie = true)) {
+            props.setGlobalUser(data.result.name);
+            props.setUserID(data.result.id);
+            props.setUserDate(data.result.created_dt);
+
+            props.setcookie(data.cookie);
+          }
+        });
     }
   }, [user, password]);
 
@@ -25,12 +37,7 @@ export const Mainhome = (props) => {
         <Register />
       </Route>
       <Route path="/" exact>
-        <Login
-          ststateuser={setuser}
-          ststatepass={setpassword}
-          user={user}
-          password={password}
-        />
+        <Login ststateuser={setuser} ststatepass={setpassword} />
       </Route>
     </div>
   );
