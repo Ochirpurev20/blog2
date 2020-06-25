@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import "./App.css";
 import { Loginhome } from "../src/pages/loginhome";
 import { Mainhome } from "../src/pages/mainhome";
@@ -11,11 +12,16 @@ function App() {
   const [userDate, setUserDate] = useState("");
   const [appclass, setappclass] = useState("");
   useEffect(() => {
+    if (document.cookie.length > 0) {
+      setcookie(true);
+      setGlobalUser(Cookies.get("LOGIN"));
+      setUserID(Cookies.get("id"));
+      setUserDate(Cookies.get("created_dt"));
+    }
+  }, []);
+  useEffect(() => {
     cookie ? setlogin(true) : setlogin(false);
     !login ? setappclass("main") : setappclass("App");
-    console.log("app s login efect =" + login);
-    console.log("app s efect cookie =" + cookie);
-    console.log("app s efect globalUser =" + globalUser);
   }, [cookie, login]);
   if (login) {
     return (

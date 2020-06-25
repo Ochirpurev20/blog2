@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 import style from "./style.module.css";
 import { Route } from "react-router-dom";
 import { Navbar } from "../../components/navbar";
@@ -19,13 +20,13 @@ export const Mainhome = (props) => {
         .then((res) => res.json())
         .then((data) => {
           alert(data.status);
-          if ((data.cookie = true)) {
-            props.setGlobalUser(data.result.name);
-            props.setUserID(data.result.id);
-            props.setUserDate(data.result.created_dt);
 
+          if (document.cookie.length > 0) {
+            props.setGlobalUser(Cookies.get("LOGIN"));
+            props.setUserID(Cookies.get("id"));
+            props.setUserDate(Cookies.get("created_dt"));
             props.setcookie(data.cookie);
-          }
+          } else console.log("pass buruu bn");
         });
     }
   }, [user, password]);

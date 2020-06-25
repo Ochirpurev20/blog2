@@ -9,3 +9,13 @@
   overflow: auto;
   flex-direction: column;
 }
+.paging {
+  display: flex;
+  justify-content: center;
+}
+.paging p {
+  padding: 10px;
+}
+.paging p:hover {
+  cursor: pointer;
+}

@@ -10,6 +10,7 @@ export const Textinput = (props) => {
       onChange={(ev) => {
         props.setstate(ev.target.value);
       }}
+      value={props.value}
     />
   );
 };

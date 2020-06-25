@@ -8,4 +8,22 @@
   padding: 1rem;
   overflow: auto;
   flex-direction: column;
+  align-items: center;
+}
+.userContainer {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+}
+.userContainer label {
+  color: #666;
+  font-style: italic;
+}
+.leftInfo {
+  width: 40%;
+  margin: 0 5px;
+}
+.rigthInfo {
+  width: 40%;
+  margin: 0 5px;
 }

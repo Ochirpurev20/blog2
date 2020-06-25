@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import style from "./style.module.css";
 import { Text } from "../../components/text";
 import { Textinput } from "../../components/textinput";
@@ -9,9 +10,9 @@ export const Create = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
-
+  const history1 = useHistory();
   function clickfunc() {
-    let user = Number(props.userID);
+    let user = props.user;
 
     fetch("/api/create", {
       headers: { "Content-Type": "application/json" },
@@ -20,6 +21,8 @@ export const Create = (props) => {
     })
       .then((res) => res.json())
       .then((data) => alert(data.status));
+
+    history1.push("/login/list");
   }
   return (
     <div className={style.create}>

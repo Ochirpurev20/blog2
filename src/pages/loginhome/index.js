@@ -27,12 +27,12 @@ export const Loginhome = (props) => {
         <List />
       </Route>
       <Route path="/login/create">
-        <Create user={props.globalUser} userID={props.userID} />
+        <Create user={props.globalUser} />
       </Route>
       <Route
         path="/detail/:id"
         render={(id) => {
-          return <Detail id={id} />;
+          return <Detail id={id} user={props.globalUser} />;
         }}
       />
     </div>
