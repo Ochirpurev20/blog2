@@ -1,12 +1,13 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import { Navbar } from "../../components/navbar";
+import Navbar from "../../components/navbar";
 import { List } from "../../pages/list";
 import style from "./style.module.css";
 import { Create } from "../create";
 import { UserInfo } from "../../components/userinfo";
 import { Detail } from "../detail";
+import { connect } from "react-redux";
 
 export const Loginhome = (props) => {
   return (

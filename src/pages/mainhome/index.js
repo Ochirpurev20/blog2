@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import style from "./style.module.css";
 import { Route } from "react-router-dom";
-import { Navbar } from "../../components/navbar";
+import Navbar from "../../components/navbar";
 import { Login } from "../../components/login";
 import { Register } from "../../components/register";
+import { connect } from "react-redux";
 
-export const Mainhome = (props) => {
+const Mainhome = (props) => {
   const [user, setuser] = useState("");
   const [password, setpassword] = useState("");
   useEffect(() => {
@@ -22,10 +23,10 @@ export const Mainhome = (props) => {
           alert(data.status);
 
           if (document.cookie.length > 0) {
-            props.setGlobalUser(Cookies.get("LOGIN"));
-            props.setUserID(Cookies.get("id"));
-            props.setUserDate(Cookies.get("created_dt"));
-            props.setcookie(data.cookie);
+            props.getTrue();
+            // props.setGlobalUser(Cookies.get("LOGIN"));
+
+            // props.setcookie(data.cookie);
           } else console.log("pass buruu bn");
         });
     }
@@ -33,7 +34,7 @@ export const Mainhome = (props) => {
 
   return (
     <div className={style.mainhome}>
-      <Navbar login={props.login} />
+      <Navbar />
       <Route path="/register">
         <Register />
       </Route>
@@ -43,3 +44,14 @@ export const Mainhome = (props) => {
     </div>
   );
 };
+const a = (state) => {
+  return {
+    appscookie: state.cookie,
+  };
+};
+const b = (dispatch) => {
+  return {
+    getTrue: (ner) => dispatch({ type: "getCookieTrue" }),
+  };
+};
+export default connect(a, b)(Mainhome);
